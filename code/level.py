@@ -11,6 +11,7 @@ from pygame.font import Font
 from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
 from code.entity import Entity
 from code.entityFactory import EntityFactory
+from code.entityMediator import entityMediator
 
 
 class Level:
@@ -41,13 +42,16 @@ class Level:
                     sys.exit()
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1', 'Enemy2'))
-                    self.entity_list.append(EntityFactory.get_entity('Enemy1'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
 
             # printed text
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 100 :.1f}s', COLOR_WHITE, (10, 5))
             self.level_text(14, f'fps: {clock.get_fps(): 0f}', COLOR_WHITE, (10, WIN_HEIGHT - 35))
             self.level_text(14, f'entidades: {len(self.entity_list)}', COLOR_WHITE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
+            # Collisions
+            entityMediator.verify_collision(entity_list=self.entity_list)
+            entityMediator.verify_health(entity_list=self.entity_list)
         pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
