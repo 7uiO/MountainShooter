@@ -80,8 +80,7 @@ ENTITY_SCORE = {
 }
 
 # M
-MENU_OPTION = ('PLAY',
-               'EXIT')
+MENU_OPTION = ('PLAY')
 
 # P
 PLAYER_KEY_UP = {'Player1': pygame.K_w}
