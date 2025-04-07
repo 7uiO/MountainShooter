@@ -35,9 +35,10 @@ class entityMediator:
             valid_interaction = True
         elif isinstance(ent1, Enemy) and isinstance(ent2, Player):
             valid_interaction = True
+
         if isinstance(ent1, Player) and ent1.invulnerable_time == 0:
             ent1.health -= ent2.damage
-            ent1.invulnerable_time = 30  # Ajuste esse valor conforme desejar
+            ent1.invulnerable_time = 30  # Ajuste conforme necessário
         if isinstance(ent2, Player) and ent2.invulnerable_time == 0:
             ent2.health -= ent1.damage
             ent2.invulnerable_time = 30
@@ -75,6 +76,8 @@ class entityMediator:
             if ent.health <= 0:
                 if isinstance(ent, Enemy):
                     entityMediator.__give_score(ent, entity_list)
-                to_remove.append(ent)
+                    to_remove.append(ent)  # inimigo morre normalmente
+                elif not isinstance(ent, Player):
+                    to_remove.append(ent)  # remove tiros ou objetos, mas não o player
         for ent in to_remove:
             entity_list.remove(ent)
