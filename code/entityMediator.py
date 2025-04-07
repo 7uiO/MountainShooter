@@ -31,8 +31,18 @@ class entityMediator:
             valid_interaction = True
         elif isinstance(ent1, EnemyShot) and isinstance(ent2, Player):
             valid_interaction = True
+        elif isinstance(ent1, Player) and isinstance(ent2, Enemy):
+            valid_interaction = True
+        elif isinstance(ent1, Enemy) and isinstance(ent2, Player):
+            valid_interaction = True
+        if isinstance(ent1, Player) and ent1.invulnerable_time == 0:
+            ent1.health -= ent2.damage
+            ent1.invulnerable_time = 30  # Ajuste esse valor conforme desejar
+        if isinstance(ent2, Player) and ent2.invulnerable_time == 0:
+            ent2.health -= ent1.damage
+            ent2.invulnerable_time = 30
 
-        if valid_interaction:  # if valid_interaction == True:
+        if valid_interaction:
             if (ent1.rect.right >= ent2.rect.left and
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
@@ -48,10 +58,6 @@ class entityMediator:
             for ent in entity_list:
                 if ent.name == 'Player1':
                     ent.score += enemy.score
-        elif enemy.last_dmg == 'Player2Shot':
-            for ent in entity_list:
-                if ent.name == 'Player2':
-                    ent.score += enemy.score
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
@@ -64,8 +70,11 @@ class entityMediator:
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
+        to_remove = []
         for ent in entity_list:
             if ent.health <= 0:
                 if isinstance(ent, Enemy):
                     entityMediator.__give_score(ent, entity_list)
-                entity_list.remove(ent)
+                to_remove.append(ent)
+        for ent in to_remove:
+            entity_list.remove(ent)

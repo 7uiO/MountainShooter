@@ -19,8 +19,6 @@ ENTITY_SPEED = {
     'Level1Bg6': 6,
     'Player1': 3,
     'Player1Shot': 2,
-    'Player2': 3,
-    'Player2Shot': 3,
     'Enemy1': 2,
     'Enemy1Shot': 5,
     'Enemy2': 3,
@@ -35,10 +33,8 @@ ENTITY_HEALTH = {
     'Level1Bg4': 999,
     'Level1Bg5': 999,
     'Level1Bg6': 999,
-    'Player1': 300,
+    'Player1': 5000,
     'Player1Shot': 1,
-    'Player2': 300,
-    'Player2Shot': 1,
     'Enemy1': 50,
     'Enemy1Shot': 1,
     'Enemy2': 60,
@@ -47,7 +43,6 @@ ENTITY_HEALTH = {
 
 ENTITY_SHOT_DELAY = {
     'Player1': 20,
-    'Player2': 15,
     'Enemy1': 80,
     'Enemy2': 100,
 }
@@ -60,14 +55,12 @@ ENTITY_DAMAGE = {
     'Level1Bg4': 0,
     'Level1Bg5': 0,
     'Level1Bg6': 0,
-    'Player1': 1,
+    'Player1': 0,
     'Player1Shot': 25,
-    'Player2': 1,
-    'Player2Shot': 25,
-    'Enemy1': 50,
-    'Enemy1Shot': 1,
-    'Enemy2': 60,
-    'Enemy2Shot': 1,
+    'Enemy1': 10,
+    'Enemy1Shot': 50,
+    'Enemy2': 20,
+    'Enemy2Shot': 100,
 }
 
 ENTITY_SCORE = {
@@ -80,8 +73,6 @@ ENTITY_SCORE = {
     'Level1Bg6': 0,
     'Player1': 0,
     'Player1Shot': 0,
-    'Player2': 0,
-    'Player2Shot': 0,
     'Enemy1': 100,
     'Enemy1Shot': 0,
     'Enemy2': 125,
@@ -89,26 +80,19 @@ ENTITY_SCORE = {
 }
 
 # M
-MENU_OPTION = ('NEW GAME 1P',
-               'NEW GAME 2P - COOPERATIVE',
-               'NEW GAME 2P - COMPETITIVE',
+MENU_OPTION = ('PLAY',
                'SCORE',
                'EXIT')
 
 # P
-PLAYER_KEY_UP = {'Player1': pygame.K_UP,
-                 'Player2': pygame.K_w}
-PLAYER_KEY_DOWN = {'Player1': pygame.K_DOWN,
-                   'Player2': pygame.K_s}
-PLAYER_KEY_LEFT = {'Player1': pygame.K_LEFT,
-                   'Player2': pygame.K_a}
-PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT,
-                    'Player2': pygame.K_d}
-PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
-                    'Player2': pygame.K_LCTRL}
+PLAYER_KEY_UP = {'Player1': pygame.K_w}
+PLAYER_KEY_DOWN = {'Player1': pygame.K_s}
+PLAYER_KEY_LEFT = {'Player1': pygame.K_a}
+PLAYER_KEY_RIGHT = {'Player1': pygame.K_d}
+PLAYER_KEY_SHOOT = {'Player1': pygame.K_SPACE}
 
 # S
-SPAWN_TIME = 4000
+SPAWN_TIME = 2000
 
 # W
 WIN_WIDTH = 576

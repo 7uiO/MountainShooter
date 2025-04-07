@@ -8,7 +8,7 @@ from pygame import Surface, Rect
 from pygame.examples.go_over_there import clock
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_GREEN, C_CYAN
+from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_GREEN
 from code.enemy import Enemy
 from code.entity import Entity
 from code.entityFactory import EntityFactory
@@ -25,8 +25,8 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))
         self.entity_list.append(EntityFactory.get_entity('Player1'))
-        if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
-            self.entity_list.append(EntityFactory.get_entity('Player2'))
+        # REMOVIDO: Player2
+
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)
 
     def run(self):
@@ -44,8 +44,7 @@ class Level:
                         self.entity_list.append(shoot)
                 if ent.name == 'Player1':
                     self.level_text(14, f'Player1 - Health:{ent.health} | Score: {ent.score}', C_GREEN, (10, 25))
-                if ent.name == 'Player1':
-                    self.level_text(14, f'Player2 - Health:{ent.health} | Score: {ent.score}', C_CYAN, (10, 45))
+                # REMOVIDO: Exibição do Player2
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:

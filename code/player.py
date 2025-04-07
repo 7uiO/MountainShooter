@@ -12,6 +12,8 @@ class Player(Entity):
     def __init__(self, name: str, position: tuple):
         super().__init__(name, position)
         self.shot_delay = ENTITY_SHOT_DELAY[self.name]
+        self.invulnerable_time = 0
+        self.visible = True
 
     def move(self, ):
         pressed_key = pygame.key.get_pressed()
@@ -23,7 +25,13 @@ class Player(Entity):
             self.rect.centerx -= ENTITY_SPEED[self.name]
         if pressed_key[PLAYER_KEY_RIGHT[self.name]] and self.rect.right < WIN_WIDTH:
             self.rect.centerx += ENTITY_SPEED[self.name]
-        pass
+
+        if self.invulnerable_time > 0:
+            self.invulnerable_time -= 1
+            # Pisca alternando a visibilidade
+            self.visible = not self.visible
+        else:
+            self.visible = True
 
     def shoot(self):
         self.shot_delay -= 1
